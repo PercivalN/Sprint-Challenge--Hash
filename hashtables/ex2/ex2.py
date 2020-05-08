@@ -1,9 +1,5 @@
 #  Hint:  You may not need all of these.  Remove the unused functions.
-from hashtable import (HashTable,
-                       put,
-                       delete,
-                       get,
-                       resize)
+from hashtable import (HashTable, put, get)
 
 class Ticket:
     def __init__(self, source, destination):
