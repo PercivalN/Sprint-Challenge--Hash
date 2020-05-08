@@ -12,7 +12,7 @@ def reconstruct_trip(tickets, length):
     route = [None] * length
 
     for ticket in tickets:
-           put(hashtable, ticket.source, ticket.destination)
+           put(hashtable, ticket.source, ticket.destination) # Put each ticket into the hash table
 
     current_airport = "NONE"
 

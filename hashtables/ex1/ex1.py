@@ -1,24 +1,26 @@
-from hashtable import(HashTable, get, put)
+
 
 def get_indices_of_item_weights(weights, length, limit):
-    ht = HashTable(16)
-
-    for key, value in enumerate(weights):
-        put(ht, value, key)
-
-    for key, value in enumerate(weights):
-        if get(ht, limit - value) is not None:
-            index = get(ht, limit - value)
-
-            if index >= key:
-                return [index, key]
+    
+    # Init a dictionary
+    index_dictionay = {}
+    
+    for i in range(len(weights)):
+        if weights[i] not in index_dictionay:
+            index_dictionay[weights[i]] = [i]
+        else:
+            index_dictionay[weights[i]] += [i]
+    
+    # Iterate through the weights to see if they are over the limit      
+    for weight in weights:
+        if limit - weight in index_dictionay:
+            if weight == limit - weight:
+                return [index_dictionay[weight][1], index_dictionay[weight][0]]
+            if weight > index_dictionay[limit - weight][0]:
+                return [index_dictionay[limit - weight][0], index_dictionay[weight][0]]
             else:
-                return [key, index]
-
+                return [index_dictionay[weight][0], index_dictionay[limit - weight][0]]
+            
     return None
 
-def print_answer(answer):
-    if answer is not None:
-        print(str(answer[0] + " " + answer[1]))
-    else:
-        print("None")
+

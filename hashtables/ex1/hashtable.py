@@ -18,13 +18,13 @@ class HashTable:
     Implement this.
     """
     
-def __init__(self, capacity):
+    def __init__(self, capacity):
         self.capacity = capacity    # Sets the number of buckets in the hash table
         self.storage = [None] * capacity
         self.initial_capacity = capacity
         self.number_keys = 0
 
-def fnv1(self, key):
+    def fnv1(self, key):
         """
         FNV-1 64-bit hash function
         
@@ -50,7 +50,7 @@ def fnv1(self, key):
             hash = hash ^ ord(x)
         return hash & 0xFFFFFFFFFFFFFFFF
         
-def djb2(self, key):
+    def djb2(self, key):
         """
         DJB2 32-bit hash function
 
@@ -61,7 +61,7 @@ def djb2(self, key):
             hash = ((hash << 5) + hash) + ord(x)
         return hash & 0xFFFFFFFF
 
-def _hash_index(self, key):
+    def _hash_index(self, key):
         """
         Take an arbitrary key and return a valid integer index
         between within the storage capacity of the hash table.
@@ -69,7 +69,7 @@ def _hash_index(self, key):
         #return self.fnv1(key) % self.capacity
         return self.djb2(key) % self.capacity
     
-def put(self, value, key):
+    def put(self, value, key):
         """
         Store the value with the given key.
 
@@ -99,7 +99,7 @@ def put(self, value, key):
             # The key was found, so update the value
             node.value = value
        
-def delete(self, key):
+    def delete(self, key):
         """
         Remove the value stored with the given key.
 
@@ -135,7 +135,7 @@ def delete(self, key):
         self.number_keys -= 1
         self.size_check()
         
-def get(self, key):
+    def get(self, key):
         """
         Retrieve the value stored with the given key.
 
@@ -158,7 +158,7 @@ def get(self, key):
         else:
             return node.value
 
-def resize(self):
+    def resize(self):
         """
         Doubles the capacity of the hash table and
         rehash all key/value pairs.
@@ -168,7 +168,7 @@ def resize(self):
         self.capacity = self.capacity * 2
         self.make_new_storage()
        
-def make_new_storage(self):
+    def make_new_storage(self):
         new_storage = [None] * self.capacity
 
         for i in range(len(self.storage)):
@@ -183,7 +183,7 @@ def make_new_storage(self):
                 node = node.next
         self.storage = new_storage
     
-def shrink(self):
+    def shrink(self):
         '''
         Halves the capacity of the hash table and
         rehashes all key/value pairs.
@@ -191,7 +191,7 @@ def shrink(self):
         self.capacity = self.capacity // 2
         self.make_new_storage()
         
-def size_check(self):
+    def size_check(self):
         '''
         Update your HashTable to automatically double in size when it grows past a load factor of 0.7
         and half in size when it shrinks past a load factor of 0.2.
