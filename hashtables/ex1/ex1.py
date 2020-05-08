@@ -1,6 +1,4 @@
-from hashtable import (HashTable,
-                       put,
-                       get)
+from hashtable import HashTable, get, put
 
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
