@@ -1,9 +1,12 @@
 def has_negatives(a):
-
-    """
-    YOUR CODE HERE
-    """
-
+    number_dictionary = {}
+    result = []
+    for num in a:
+        number_dictionary[num] = None
+    for num in a:
+        if num > 0:
+            if num * -1 in number_dictionary:
+                result.append(num)
     return result
 
 
