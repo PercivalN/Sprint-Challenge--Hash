@@ -1,4 +1,10 @@
 #  Hint:  You may not need all of these.  Remove the unused functions.
+from hashtable import (HashTable,
+                       put,
+                       delete,
+                       get,
+                       resize)
+
 class Ticket:
     def __init__(self, source, destination):
         self.source = source
@@ -6,9 +12,16 @@ class Ticket:
 
 
 def reconstruct_trip(tickets, length):
-    
-    """
-    YOUR CODE HERE
-    """
+    hashtable = HashTable(length)
+    route = [None] * length
 
-    return route
+    for ticket in tickets:
+           put(hashtable, ticket.source, ticket.destination)
+
+    current_airport = "NONE"
+
+    for i in range(length):
+       route[i] = get(hashtable, current_airport)
+       current_airport = route[i]
+    
+    return route[:-1]
